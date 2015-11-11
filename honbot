@@ -17,7 +17,10 @@ Then run ./honbot again
 import sys, os, imp, optparse
 from textwrap import dedent as trim
 
-dotdir = os.path.expanduser('~/.honbot')
+def getScriptPath():
+   return os.path.dirname(os.path.realpath(sys.argv[0]))
+
+dotdir = os.path.join(getScriptPath(), 'honbot.conf')
 
 def check_python_version(): 
    if sys.version_info < (2, 4): 
