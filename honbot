@@ -36,6 +36,9 @@ def create_default_config(fn):
    password = 'example'
    owner = 'yournickname'
 
+   twitch_nick = 'yourtwitchnickname'
+   twitch_oauth_password = "oauth:yourtwitchoauth"
+
    api_key = ''
 
    # exclude modules from loading
