@@ -66,6 +66,9 @@ def run_honbot(config):
    def handle_pubmsg(c, e):
       print("Twitch: got pubmsg with c="+str(c)+", e="+str(e)+" with type="+e.type+", source="+e.source+", target="+e.target+", arguments="+str(e.arguments))
       p.write_packet(packets.ID.HON_SC_WHISPER, p.config.owner, twitch_source_to_nick(e.source) + ": " + ";".join(e.arguments))
+      if hasattr(p.config, 'other_receivers') and p.config.other_receivers is not None:
+         for receiver in p.config.other_receivers:
+            p.write_packet(packets.ID.HON_SC_WHISPER, receiver, twitch_source_to_nick(e.source) + ": " + ";".join(e.arguments))
 
    def handle_join(c, e):
       # print("Twitch: got pubmsg with c="+str(c)+", e="+str(e)+" with type="+e.type+", source="+e.source+", target="+e.target+", arguments="+str(e.arguments))
