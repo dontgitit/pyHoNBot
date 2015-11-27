@@ -35,9 +35,11 @@ def create_default_config(fn):
    nick = 'honbot'
    password = 'example'
    owner = 'yournickname'
+   other_receivers = []
 
    twitch_nick = 'yourtwitchnickname'
    twitch_oauth_password = "oauth:yourtwitchoauth"
+   twitch_guest_channel = '#channel'
 
    api_key = ''
 
