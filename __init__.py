@@ -47,7 +47,8 @@ def run_honbot(config):
    except Exception, e: 
       print >> sys.stderr, 'Warning:', e, '(in __init__.py)'
 
-   twitch_bot = TwitchChatBot('#'+config.twitch_nick.lower(), config.twitch_nick, "irc.twitch.tv", config.twitch_oauth_password, 6667)
+   twitch_channel = config.twitch_guest_channel if hasattr(config, 'twitch_guest_channel') and config.twitch_guest_channel is not None and len(config.twitch_guest_channel) > 0 else '#'+config.twitch_nick.lower()
+   twitch_bot = TwitchChatBot(twitch_channel, config.twitch_nick, "irc.twitch.tv", config.twitch_oauth_password, 6667)
 
    p = None
 
@@ -75,8 +76,8 @@ def run_honbot(config):
       p.write_packet(packets.ID.HON_SC_WHISPER, p.config.owner, twitch_source_to_nick(e.source) + " left your channel!")
 
    twitch_bot.add_on_pubmsg(handle_pubmsg)
-   twitch_bot.add_on_join(handle_join)
-   twitch_bot.add_on_part(handle_part)
+   #twitch_bot.add_on_join(handle_join)
+   #twitch_bot.add_on_part(handle_part)
    twitch_bot._connect()
   
    while True: 
